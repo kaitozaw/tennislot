@@ -14,11 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from core.views import test_view
+from django.urls import path, include
+from core.views import *
 
 urlpatterns = [
+    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
-    path('test/', test_view),
+    path("dashboard/", dashboard_view, name="dashboard"),
+    path("booking_page/create/", launch_setting, {'mode': 'create'}, name="launch_setting_create"),
+    path("booking_page/<int:booking_page_id>/edit/", launch_setting, {'mode': 'edit'}, name="launch_setting_edit"),
+    path("booking_page/navigate/<str:direction>/", navigate_setting, {'mode': 'create'}, name="navigate_setting_create"),
+    path('booking_page/<int:booking_page_id>/navigate/<str:section>/', navigate_setting, {'mode': 'edit'}, name='navigate_setting_edit'),
+    path('booking_page/<int:booking_page_id>/edit/save/<str:section>/', save_setting_edit, name='save_setting_edit'),
+    path("booking_page/add/<str:section>/", add_setting_item, {'mode': 'create'}, name="add_setting_item_create"),
+    path("booking_page/<int:booking_page_id>/add/<str:section>/", add_setting_item, {'mode': 'edit'}, name="add_setting_item_edit"),
+    path("booking_page/delete/<str:section>/<int:index>/", delete_setting_item, {'mode': 'create'}, name="delete_setting_item_create"),
+    path("booking_page/<int:booking_page_id>/delete/<str:section>/<int:object_id>/", delete_setting_item, {'mode': 'edit'}, name="delete_setting_item_edit"),
 ]

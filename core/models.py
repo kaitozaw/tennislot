@@ -45,6 +45,10 @@ class BookingPage(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def get_public_url(self):
+        return f"/book/{self.public_url}/"
+
     def __str__(self):
         return f"{self.name} {self.location}"
 
@@ -66,7 +70,7 @@ class SlotDefinition(models.Model):
         (60, "60 minutes"),
     ]
 
-    booking_page = models.ForeignKey("BookingPage", on_delete=models.CASCADE, related_name="slot_definition")
+    booking_page = models.OneToOneField("BookingPage", on_delete=models.CASCADE, related_name="slot_definition")
     slot_size = models.PositiveIntegerField(choices=SLOT_CHOICES)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)

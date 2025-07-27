@@ -1,0 +1,12 @@
+{% for equipment_option in setting.equipment_options %}
+    <div class="flex justify-between items-center py-2 border-b">
+        <span>{{ equipment_option.name }} - ${{ equipment_option.price }}</span>
+        {% if mode == "create" %}
+            <button hx-post="{% url 'delete_setting_item_create' section='equipment_options' index=forloop.counter0 %}" hx-confirm="Are you sure?" hx-target="#equipment-option-list" hx-swap="innerHTML" hx-push-url="false" class="text-red-500 hover:underline text-sm">Delete</button>
+        {% else %}
+            <button hx-post="{% url 'delete_setting_item_edit' section='equipment_options' booking_page_id=booking_page.id object_id=equipment_option.id %}" hx-confirm="Are you sure?" hx-target="#equipment-option-list" hx-swap="innerHTML" hx-push-url="false" class="text-red-500 hover:underline text-sm">Delete</button>
+        {% endif %}
+    </div>
+{% empty %}
+    <p class="text-gray-500">No equipment options added yet.</p>
+{% endfor %}

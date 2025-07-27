@@ -1,0 +1,23 @@
+{% extends "layouts/base_private.html" %}
+
+{% block title %}Edit Booking Page{% endblock %}
+
+{% block content %}
+    <div class="mb-6">
+        <h1 class="mb-4 text-2xl font-bold text-gray-800">Edit Booking Page</h1>
+        <div class="mb-4 border-b border-gray-200">
+            <nav class="-mb-px flex space-x-6 text-sm font-medium text-gray-600" hx-boost="true">
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='booking_page' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'booking_page' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Page Details</a>
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='courts' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'courts' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Courts</a>
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='slot_definition' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'slot_definition' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Slot Definition</a>
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='equipment_options' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'equipment_options' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Equipment Options</a>
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='opening_hour_rules' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'opening_hour_rules' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Opening Hour Rules</a>
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='holiday_exceptions' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'holiday_exceptions' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Holiday Exceptions</a>
+                <a hx-get="{% url 'navigate_setting_edit' booking_page_id=booking_page.id section='special_exceptions' %}" hx-target="#settings" hx-swap="innerHTML" class="tab-link px-3 py-2 border-b-2 {% if section == 'special_exceptions' %}border-yellow-500 text-yellow-600{% else %}border-transparent hover:text-yellow-600 hover:border-yellow-300{% endif %}">Special Exceptions</a>
+            </nav>
+        </div>
+        <div id="settings">
+            {% include "partials/_settings_"|add:section|add:".html" %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "layouts/base_private.html" %}
+
+{% block title %}Create Booking Page{% endblock %}
+
+{% block content %}
+    <div class="mb-6">
+        <h1 class="mb-4 text-2xl font-bold text-gray-800">Create Booking Page</h1>
+        <div id="settings">
+            {% include "partials/_settings_"|add:section|add:".html" %}         
+        </div>
+    </div>
+{% endblock %}

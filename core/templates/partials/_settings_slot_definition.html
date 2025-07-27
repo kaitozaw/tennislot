@@ -1,0 +1,24 @@
+<form method="POST" class="space-y-6 bg-white p-6 rounded shadow">
+    {% csrf_token %}
+    <h2 class="text-lg font-semibold text-gray-800">Slot</h2>
+    <div>
+        <label for="slot_size" class="block text-sm font-medium text-gray-700">Slot Size</label>
+        {{ form.slot_size }}
+        {{ form.slot_size.errors }}
+    </div>
+    <div>
+        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+        {{ form.price }}
+        {{ form.price.errors }}
+    </div>
+    {% if mode == "create" %}
+        <div class="flex justify-between"> 
+            <button type="submit" hx-post="{% url 'navigate_setting_create' direction='previous' %}?current=slot_definition" hx-target="#settings" hx-swap="innerHTML" class="text-gray-500 hover:underline">← Go Back to Previous Step</button>
+            <button type="submit" hx-post="{% url 'navigate_setting_create' direction='next' %}?current=slot_definition" hx-target="#settings" hx-swap="innerHTML" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">Go to Next Step →</button>
+        </div>    
+    {% else %}
+        <div class="text-right">
+            <button type="submit" hx-post="{% url 'save_setting_edit' booking_page_id=booking_page.id section='slot_definition' %}" hx-target="#settings" hx-swap="innerHTML" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">Save</button>
+        </div>
+    {% endif %}
+</form>

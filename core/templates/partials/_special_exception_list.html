@@ -1,0 +1,8 @@
+{% for special_exception in setting.special_exceptions %}
+    <div class="flex justify-between items-center py-2 border-b">
+        <span><strong>{{ special_exception.court.name }}</strong>: {{ special_exception.date }} {{ special_exception.start_time }} - {{ special_exception.end_time }}{% if special_exception.note %} ({{ special_exception.note }}){% endif %}</span>
+        <button hx-post="{% url 'delete_setting_item_edit' section='special_exceptions' booking_page_id=booking_page.id object_id=special_exception.id %}" hx-confirm="Are you sure?" hx-target="#special-exception-list" hx-swap="innerHTML" hx-push-url="false" class="text-red-500 hover:underline text-sm">Delete</button>
+    </div>
+{% empty %}
+    <p class="text-gray-500">No special exceptions added yet.</p>
+{% endfor %}

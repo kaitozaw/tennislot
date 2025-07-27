@@ -1,0 +1,39 @@
+<div class="p-6 space-y-6 bg-white rounded shadow">
+    <h2 class="text-lg font-semibold text-gray-800">Special Exceptions</h2>
+    <form method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
+        {% csrf_token %}
+        <div>
+            <label for="court" class="block text-sm font-medium text-gray-700">Court</label>
+            {{ form.court }}
+            {{ form.court.errors }}
+        </div>
+        <div>
+            <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+            {{ form.date }}
+            {{ form.date.errors }}
+        </div>
+        <div>
+            <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time</label>
+            {{ form.start_time }}
+            {{ form.start_time.errors }}
+        </div>
+        <div>
+            <label for="end_time" class="block text-sm font-medium text-gray-700">End Time</label>
+            {{ form.end_time }}
+            {{ form.end_time.errors }}
+        </div>
+        <div>
+            <label for="note" class="block text-sm font-medium text-gray-700">Note</label>
+            {{ form.note }}
+            {{ form.note.errors }}
+        </div>
+        <div>
+            {% if mode == "edit" %}
+                <button type="submit" hx-post="{% url 'add_setting_item_edit' section='special_exceptions' booking_page_id=booking_page.id %}" hx-target="#special-exception-list" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
+            {% endif %}
+        </div>
+    </form>
+    <div id="special-exception-list">
+        {% include "partials/_special_exception_list.html" %}
+    </div>
+</div>

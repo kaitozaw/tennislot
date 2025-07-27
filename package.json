@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/kaitozaw/tennislot#readme",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.11"
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
   }
 }

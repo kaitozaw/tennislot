@@ -1,0 +1,8 @@
+{% for holiday_exception in setting.holiday_exceptions %}
+    <div class="flex justify-between items-center py-2 border-b">
+        <span>{{ holiday_exception.date }} {{ holiday_exception.start_time }} - {{ holiday_exception.end_time }}{% if holiday_exception.note %} ({{ holiday_exception.note }}){% endif %}</span>
+        <button hx-post="{% url 'delete_setting_item_edit' section='holiday_exceptions' booking_page_id=booking_page.id object_id=holiday_exception.id %}" hx-confirm="Are you sure?" hx-target="#holiday-exception-list" hx-swap="innerHTML" hx-push-url="false" class="text-red-500 hover:underline text-sm">Delete</button>
+    </div>
+{% empty %}
+    <p class="text-gray-500">No holiday exceptions added yet.</p>
+{% endfor %}
