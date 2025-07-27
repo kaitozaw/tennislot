@@ -14,11 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from core.views import *
+from core.views import dashboard_view, launch_setting, navigate_setting, save_setting_edit, add_setting_item, delete_setting_item
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),

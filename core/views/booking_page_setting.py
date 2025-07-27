@@ -1,20 +1,12 @@
 from core.forms import BookingPageForm, CourtForm, SlotDefinitionForm, EquipmentOptionForm, OpeningHourRuleFormSet, HolidayExceptionForm, SpecialExceptionForm
+from core.models import BookingPage, Court, SlotDefinition, EquipmentOption, OpeningHourRule, HolidayException, SpecialException
 from core.utils.setting_config import SETTING_CONFIG
 from decimal import Decimal
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import BookingPage, Court, SlotDefinition, EquipmentOption, OpeningHourRule, HolidayException, SpecialException
 import secrets
-
-@login_required
-def dashboard_view(request):
-    booking_pages = BookingPage.objects.filter(organiser=request.user)
-
-    return render(request, "dashboard.html", {
-        "booking_pages": booking_pages
-    })
 
 @login_required
 def launch_setting(request, mode, booking_page_id=None):
