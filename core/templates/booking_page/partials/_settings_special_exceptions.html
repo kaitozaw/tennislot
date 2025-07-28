@@ -1,7 +1,12 @@
 <div class="p-6 space-y-6 bg-white rounded shadow">
-    <h2 class="text-lg font-semibold text-gray-800">Holiday Exceptions</h2>
-    <form method="POST" class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+    <h2 class="text-lg font-semibold text-gray-800">Special Exceptions</h2>
+    <form method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
         {% csrf_token %}
+        <div>
+            <label for="court" class="block text-sm font-medium text-gray-700">Court</label>
+            {{ form.court }}
+            {{ form.court.errors }}
+        </div>
         <div>
             <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
             {{ form.date }}
@@ -24,11 +29,11 @@
         </div>
         <div>
             {% if mode == "edit" %}
-                <button type="submit" hx-post="{% url 'add_setting_item_edit' section='holiday_exceptions' booking_page_id=booking_page.id %}" hx-target="#holiday-exception-list" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
+                <button type="submit" hx-post="{% url 'add_setting_item_edit' section='special_exceptions' booking_page_id=booking_page.id %}" hx-target="#list-special-exception" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
             {% endif %}
         </div>
     </form>
-    <div id="holiday-exception-list">
-        {% include "partials/_holiday_exception_list.html" %}
+    <div id="list-special-exception">
+        {% include "booking_page/partials/_list_special_exception.html" %}
     </div>
 </div>

@@ -9,14 +9,14 @@
         </div>
         <div>
             {% if mode == "create" %}
-                <button type="submit" hx-post="{% url 'add_setting_item_create' section='courts' %}" hx-target="#court-list" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
+                <button type="submit" hx-post="{% url 'add_setting_item_create' section='courts' %}" hx-target="#list-court" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
             {% else %}
-                <button type="submit" hx-post="{% url 'add_setting_item_edit' section='courts' booking_page_id=booking_page.id %}" hx-target="#court-list" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
+                <button type="submit" hx-post="{% url 'add_setting_item_edit' section='courts' booking_page_id=booking_page.id %}" hx-target="#list-court" hx-swap="innerHTML" hx-push-url="false" class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">+ Add</button>
             {% endif %}
         </div>
     </form>
-    <div id="court-list">
-        {% include "partials/_court_list.html" %}
+    <div id="list-court">
+        {% include "booking_page/partials/_list_court.html" %}
     </div>
     {% if mode == "create" %}
         <form method="POST">

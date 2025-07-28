@@ -6,6 +6,6 @@ from django.shortcuts import render
 def dashboard_view(request):
     booking_pages = BookingPage.objects.filter(organiser=request.user)
 
-    return render(request, "dashboard.html", {
+    return render(request, "dashboard/index.html", {
         "booking_pages": booking_pages
     })

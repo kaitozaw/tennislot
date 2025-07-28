@@ -1,0 +1,12 @@
+{% for court in setting.courts %}
+    <div class="flex justify-between items-center py-2 border-b">
+        <span>{{ court.name }}</span>
+        {% if mode == "create" %}
+            <button hx-post="{% url 'delete_setting_item_create' section='courts' index=forloop.counter0 %}" hx-confirm="Are you sure?" hx-target="#list-court" hx-swap="innerHTML" hx-push-url="false" class="text-red-500 hover:underline text-sm">Delete</button>
+        {% else %}
+            <button hx-post="{% url 'delete_setting_item_edit' section='courts' booking_page_id=booking_page.id object_id=court.id %}" hx-confirm="Are you sure?" hx-target="#list-court" hx-swap="innerHTML" hx-push-url="false" class="text-red-500 hover:underline text-sm">Delete</button>
+        {% endif %}
+    </div>
+{% empty %}
+    <p class="text-gray-500">No courts added yet.</p>
+{% endfor %}

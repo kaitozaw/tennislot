@@ -1,4 +1,4 @@
-from .auth import *
+from .account import *
 from .booking_page import *
 from .booking_page_admin import *
 from .booking_page_setting import *

@@ -29,7 +29,7 @@ def launch_setting(request, mode, booking_page_id=None):
     if mode == "edit":
         context["booking_page"] = booking_page
 
-    return render(request, f"booking_page_{mode}.html", context)
+    return render(request, f"booking_page/{mode}.html", context)
 
 @login_required
 def navigate_setting(request, mode, direction=None, section=None, booking_page_id=None):
@@ -62,7 +62,7 @@ def navigate_setting(request, mode, direction=None, section=None, booking_page_i
     if mode == "edit":
         context["booking_page"] = booking_page
 
-    return render(request, f"partials/_settings_{section}.html", context)
+    return render(request, f"booking_page/partials/_settings_{section}.html", context)
     
 def get_section(current_section, direction):
     section_ORDER = [
@@ -198,7 +198,7 @@ def save_setting_edit(request, booking_page_id, section):
     context.update(get_context_setting("edit", source, section))
     context.update(get_context_form("edit", source, section))
 
-    return render(request, f"partials/_settings_{section}.html", context)
+    return render(request, f"booking_page/partials/_settings_{section}.html", context)
 
 def save_setting(request, mode, source, section):
     if section == "booking_page":
@@ -357,7 +357,7 @@ def add_setting_item(request, mode, section, booking_page_id=None):
             if not form.is_valid():
                 return HttpResponseBadRequest("Invalid input")
             
-            court = get_object_or_404(BookingPage, id=form.cleaned_data["court"])
+            court = get_object_or_404(Court, id=form.cleaned_data["court"], booking_page=booking_page)
             
             config["model"].objects.create(court=court, **{k: v for k, v in form.cleaned_data.items() if k != "court"})
             items = []
