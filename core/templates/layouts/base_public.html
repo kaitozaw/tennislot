@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include "shared/_head.html" %}
-    <body class="bg-gray-100 text-gray-900">
-        <main class="container mx-auto px-4">
+    <body class="bg-gray-100 text-gray-800">
+        <script>
+            document.body.addEventListener('htmx:configRequest', (event) => {
+                const token = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+                if (token) {
+                    event.detail.headers['X-CSRFToken'] = token;
+                }
+            });
+        </script>
+        {% include "shared/_nav_public.html" %}
+        <main class="container mx-auto px-4 py-4 max-w-4xl">
             {% block content %}{% endblock %}
         </main>
     </body>

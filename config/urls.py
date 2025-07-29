@@ -19,8 +19,8 @@ from django.urls import path, include
 from core.views import dashboard_view, launch_setting, navigate_setting, save_setting_edit, add_setting_item, delete_setting_item
 
 urlpatterns = [
-    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path("dashboard/", dashboard_view, name="dashboard"),
     path("booking_page/create/", launch_setting, {'mode': 'create'}, name="launch_setting_create"),
     path("booking_page/<int:booking_page_id>/edit/", launch_setting, {'mode': 'edit'}, name="launch_setting_edit"),

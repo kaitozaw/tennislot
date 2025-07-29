@@ -1,0 +1,33 @@
+{% extends "layouts/base_public.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="flex justify-start items-center mb-4">
+    <h1 class="text-2xl font-bold text-gray-800">Login</h1>
+</div>
+<div class="max-w-md mx-auto mt-12 p-6 bg-white rounded-md shadow overflow-hidden">
+    <form method="post" action="{% url 'account_login' %}" class="space-y-6">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            <label for="id_login" class="block text-sm font-medium text-gray-700">Email</label>
+            {{ form.login }}
+            {{ form.login.errors }}
+        </div>
+        <div>
+            <label for="id_password" class="block text-sm font-medium text-gray-700">Password</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <div class="flex justify-between items-center text-sm">
+            <label class="flex items-center gap-2 text-gray-700">{{ form.remember }}<span>Remember me</span></label>
+            <a href="{% url 'account_reset_password' %}" class="text-yellow-500 hover:underline">Forgot?</a>
+        </div>
+        <div>
+            <button type="submit" class="w-full py-2 px-4 bg-yellow-400 hover:bg-yellow-500 font-semibold text-gray-800 rounded shadow">Log In</button>
+        </div>
+    </form>
+    <p class="mt-6 text-sm text-center text-gray-600">Don't have an account?<a href="{% url 'account_signup' %}" class="text-yellow-500 hover:underline font-semibold"> Sign up</a></p>
+</div>
+{% endblock %}

@@ -35,10 +35,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'core',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +63,13 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+ACCOUNT_FORMS = {
+    "login": "core.forms.CustomLoginForm",
+    "reset_password": "core.forms.CustomResetPasswordForm",
+    "reset_password_from_key": "core.forms.CustomResetPasswordKeyForm", 
+    "signup": "core.forms.CustomSignupForm",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
