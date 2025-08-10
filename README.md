@@ -6,7 +6,7 @@ Local tennis court owners often struggle with managing reservations manually. Ho
 
 ## Solution
 
-Tennislot enables tennis court owners to set up an online booking page in minutes, with no upfront costs and only a small transaction fee per reservation.
+Tennislot enables tennis court owners to set up an online booking page in minutes, with no upfront costs and only a small transaction fee per booking.
 
 ## Features
 
